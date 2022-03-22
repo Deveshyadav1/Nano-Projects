@@ -1,0 +1,93 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+class encrypt
+{
+    private:
+    char data[100];
+    int len;
+    
+    public:
+    encrypt()
+    {
+        cout<<endl<<"Enter Data : ";
+        cin.get(data,100);
+    }
+    
+    int encrypted_data()
+    {
+       
+        len = strlen(data);
+        for(int i=0;i<len;i++)
+        {
+            data[i]=data[i] +3;
+        }
+        cout<<endl<<"Data Encrypted :"<<endl;
+        return 0;
+    }
+    
+    int show_data()
+    {
+        cout<<endl;
+        cout<<endl<<"Data Length : "<<len<<" Character"<<endl;
+        cout<<endl<<"Data        : ";
+        for(int i=0;i<strlen(data);i++)
+        {
+            cout<<data[i];
+        }
+        cout<<endl;
+        return 0;
+    }
+    
+    int decyrpt_data()
+    {
+        cout<<endl;
+        for(int i=0;i<len;i++)
+        {
+            data[i]=data[i] - 3;
+        }
+        cout<<endl<<"Data Decyrpted :"<<endl;
+        return 0;
+    }
+    
+};
+
+int main()
+{
+    encrypt e1;
+    int c;
+    while(1)
+    {
+        cout<<endl<<"1. Encrypt Data   :";
+        cout<<endl<<"2. Decrypt Data   :";
+        cout<<endl<<"3. Show Data      :";
+        
+        cin>>c;
+        
+        switch(c)
+        {
+            case 1:
+            {
+                e1.encrypted_data();
+                break;
+            }
+            case 2:
+            {
+                e1.decyrpt_data();
+                break;
+            }
+            case 3:
+            {
+                e1.show_data();
+                break;
+            }
+            default:
+            {
+                cout<<endl<<"please enter a valid choise :";
+                break;
+            }
+        }
+    }
+    return 0;
+}
