@@ -29,6 +29,7 @@ class encrypt
     
     int show_data()
     {
+        len = strlen(data);
         cout<<endl;
         cout<<endl<<"Data Length : "<<len<<" Character"<<endl;
         cout<<endl<<"Data        : ";
