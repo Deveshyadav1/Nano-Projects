@@ -1,1 +1,145 @@
 
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<string.h>
+
+struct node 
+{
+    long int data;
+    char name[20];
+    struct node *next;
+
+};
+
+int count_node(struct node *start)
+{
+    int count=1;
+    struct node *ptr;
+    ptr=start;
+    while(ptr->next!=NULL)
+    {
+        count++;
+        ptr=ptr->next;
+    }
+    return count;
+}
+
+void add_node(struct node *start)
+{
+    struct node *ptr;
+    ptr = (struct node*)malloc(sizeof(struct node));
+    printf("\n Enter person's First Name :");
+    //gets(ptr->name,stdin);
+    scanf("%s",ptr->name);
+    printf("\n Enter Contact No :");
+    scanf("%ld",&ptr->data);
+    if(start->next == NULL)
+    {
+        start->next=ptr;
+    }
+    else
+    {
+        struct node *ptr2;
+        ptr2=start;
+        
+        while(ptr2->next!=NULL)
+        {
+            ptr2 = ptr2->next;
+        }
+        
+        ptr2->next = ptr;
+        printf("\n Contact Added Succfully\n");
+    }
+    
+}
+
+void traverse(struct node *start)
+{
+    struct node *ptr;
+    ptr = start;
+    int i=1;
+    printf("\n      Name             Contact\n");
+    do{
+        printf("\n[%d] : %s      ",i,ptr->name);printf(" +91 %ld ",ptr->data);
+        i++;
+        ptr = ptr->next;
+    }
+    while(ptr!=NULL);
+
+    
+}
+
+int main()
+{
+    struct node *one = (struct node*)malloc(sizeof(struct node));
+    struct node *two  = (struct node*)malloc(sizeof(struct node));
+    struct node *three = (struct node*)malloc(sizeof(struct node));
+    struct node *four = (struct node*)malloc(sizeof(struct node));
+    
+    one->next = two;
+    two->next = three;
+    three->next = four;
+    four->next = NULL;
+
+    strcpy(one->name,"Devesh");
+    strcpy(two->name,"Anand");
+    strcpy(three->name,"Gopal");
+    strcpy(four->name,"Akhand");
+    
+    //assign data
+    one->data = 9410431959;
+    two->data = 9410021864;
+    three->data = 9557824745;
+    four->data = 8077609273;
+    
+    //traverse
+   
+    
+    int choise;
+    char name1[20];
+    printf("\nEnter Username :");
+    fgets(name1,sizeof(name1),stdin);
+    printf("\n................... Telephone Directory .................... ");
+    printf("\n\n");
+    printf(" User         :  %s ",name1);
+    printf("Country      :  India \n");
+    printf(" Country code :  +91           Total Contact Registerd : %d ",count_node(one));
+    printf("\n");
+    printf(".............................................................");
+    printf("\n");
+    while(1)
+    {
+    printf("\n");
+    printf("\n1: Add New Contact     :");
+    printf("\n2: Print All Contacts  :");
+    printf("\n3: Total Contacts      :");
+    scanf("%d",&choise);
+    
+    switch(choise)
+    {
+        case 1:
+        add_node(one);
+        break;
+        
+        case 2:
+        traverse(one);
+        break;
+        
+        case 3:
+        printf("\nTotal Contact Register : %d \n",count_node(one));
+        break;
+        default:
+        printf("\nEnter A valid Choise :");
+        break;
+    }
+    }
+
+    return 0; 
+    
+    
+}
+
+
+
+
